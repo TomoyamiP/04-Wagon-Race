@@ -2,18 +2,17 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   background-image: url('images/simple_natural_landscape_free_pixel_art_background_4.png');
   background-color: rgb(102, 242, 249);
-  background-size: cover;
-  background-position: bottom center;
+  background-size: contain;
+  background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: Arial, sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 h1, button {
@@ -22,12 +21,23 @@ h1, button {
 }
 
 button {
-  padding: 8px 16px;
-  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* Fixed bottom container with increased height */
+button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
+
 .race-container {
   position: fixed;
   bottom: 0;
@@ -36,46 +46,44 @@ button {
   background: transparent;
   padding: 8px 0;
   z-index: 1000;
-  height: 35vh; /* increased height from 25vh */
-
+  height: auto;
+  max-height: 35vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-shrink: 0;
 }
 
-/* Scrollable wrapper for race table with hidden scrollbar */
-.table-wrapper {
-  overflow-x: auto;
+#winner-message {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: red;
+  margin-bottom: 8px;
   width: 100%;
-  height: 100%;
-  scrollbar-width: none;           /* Firefox */
-  -ms-overflow-style: none;        /* IE 10+ */
+  user-select: none;
 }
 
-.table-wrapper::-webkit-scrollbar {
-  display: none;                   /* WebKit (Chrome, Safari) */
-}
-
-/* Table styles */
 .racer-table {
   table-layout: fixed;
   border-collapse: collapse;
   background-color: transparent;
-  height: 100%;       /* fill race-container height */
+  height: 100%;
   width: 2000px;
   min-width: max-content;
   margin: 0 auto;
+  overflow-x: auto;
 }
 
 .racer-table td {
-  height: 45%;      /* taller cells to fit bigger dogs */
+  height: 45%;
   width: 40px;
   border: 1px solid transparent;
 }
 
 .racer-table td.active {
   background-repeat: no-repeat;
-  background-size: 120% auto;  /* bigger dog images */
+  background-size: 120% auto;
   background-position: center center;
 }
 
@@ -85,6 +93,7 @@ button {
 
 #player2-race td.active {
   background-image: url("images/dog2.gif");
+  filter: brightness(1.3) saturate(1.1); /* Make dog 2 lighter */
 }
 
 .racer-table tr td.finish-line {
@@ -99,17 +108,25 @@ button {
   font-size: 24px;
 }
 
-/* Progress bars */
 .progress-container {
-  width: 600px;
-  margin: 20px auto 0 auto;
+  width: 400px;
+  margin: 10px auto 0 auto;
+  padding-bottom: 10px;
+}
+
+.progress-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 12px;
 }
 
 progress {
   width: 100%;
-  height: 20px;
+  height: 18px;
   appearance: none;
-  margin-top: 4px;
+  border-radius: 10px;
+  background-color: #eee;
+  overflow: visible;
 }
 
 progress::-webkit-progress-bar {
@@ -127,43 +144,46 @@ progress::-moz-progress-bar {
   border-radius: 10px;
 }
 
-/* Winner message styling */
-#winner-message {
-  text-align: center;
+.progress-text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   font-weight: bold;
-  font-size: 1.2rem;
-  color: red;
-  margin-top: 15px;
+  color: white;
+  line-height: 18px;
+  pointer-events: none;
+  user-select: none;
+  font-size: 0.9rem;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
-#player2-race td.active {
-  background-image: url("images/dog2.gif");
-  filter: brightness(1.5) saturate(1.1);
-}
-h1 {
-  color: whitesmoke;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* horizontal offset, vertical offset, blur radius, shadow color */
-}
-h1 {
-  font-family: 'Barrio', cursive;
-}
-h1 {
-  font-size: 3rem;  /* or 48px, or any size you want */
-}
-button {
-  background-color: #007bff;     /* Blue background */
-  color: white;                  /* White text */
-  border: none;                  /* Remove default border */
-  border-radius: 8px;            /* Rounded corners */
-  padding: 12px 24px;            /* Bigger padding */
-  font-size: 1.1rem;             /* Larger font size */
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+  .racer-table {
+    width: 100%;
+  }
+
+  .progress-container {
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
 }
 
-button:hover {
-  background-color: #0056b3;     /* Darker blue on hover */
-  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
 }
