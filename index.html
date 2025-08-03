@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Doggy Race 🏎</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barrio&family=Montserrat:ital,wght@0,100;1,100&display=swap" rel="stylesheet" />
+
+  <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <h1>PJ's Doggy Race</h1>
+  <button id="restart-btn">Restart Race</button>
+
+  <div class="race-container">
+    <div class="table-wrapper">
+      <table class="racer-table" cellspacing="0" cellpadding="0">
+        <tr id="player1-race">
+          <td class="active"></td>
+          <!-- 48 empty cells -->
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td>
+          <td class="finish-line"></td>
+        </tr>
+        <tr id="player2-race">
+          <td class="active"></td>
+          <!-- 48 empty cells -->
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td></td><td></td>
+          <td class="finish-line"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="progress-container">
+      <label>Player 1 Progress:</label>
+      <progress id="progress-player1" max="49" value="0"></progress>
+
+      <label>Player 2 Progress:</label>
+      <progress id="progress-player2" max="49" value="0"></progress>
+    </div>
+
+    <div id="winner-message"></div>
+  </div>
+
+  <script src="lib/wagon_race.js"></script>
+
+  <audio id="win-sound" src="sounds/456966__funwithsound__success-fanfare-trumpets.mp3" preload="auto"></audio>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('images/simple_natural_landscape_free_pixel_art_background_4.png');
+  background-color: rgb(102, 242, 249);
+  background-size: cover;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+}
+
+h1, button {
+  margin: 10px 0;
+  text-align: center;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Fixed bottom container with increased height */
+.race-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  padding: 8px 0;
+  z-index: 1000;
+  height: 35vh; /* increased height from 25vh */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Scrollable wrapper for race table with hidden scrollbar */
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+  height: 100%;
+  scrollbar-width: none;           /* Firefox */
+  -ms-overflow-style: none;        /* IE 10+ */
+}
+
+.table-wrapper::-webkit-scrollbar {
+  display: none;                   /* WebKit (Chrome, Safari) */
+}
+
+/* Table styles */
+.racer-table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  background-color: transparent;
+  height: 100%;       /* fill race-container height */
+  width: 2000px;
+  min-width: max-content;
+  margin: 0 auto;
+}
+
+.racer-table td {
+  height: 45%;      /* taller cells to fit bigger dogs */
+  width: 40px;
+  border: 1px solid transparent;
+}
+
+.racer-table td.active {
+  background-repeat: no-repeat;
+  background-size: 120% auto;  /* bigger dog images */
+  background-position: center center;
+}
+
+#player1-race td.active {
+  background-image: url("images/dog1.gif");
+}
+
+#player2-race td.active {
+  background-image: url("images/dog2.gif");
+}
+
+.racer-table tr td.finish-line {
+  position: relative;
+}
+
+.racer-table tr td.finish-line::after {
+  content: "🏁";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 24px;
+}
+
+/* Progress bars */
+.progress-container {
+  width: 600px;
+  margin: 20px auto 0 auto;
+}
+
+progress {
+  width: 100%;
+  height: 20px;
+  appearance: none;
+  margin-top: 4px;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+  background-color: #4caf50;
+  border-radius: 10px;
+}
+
+progress::-moz-progress-bar {
+  background-color: #4caf50;
+  border-radius: 10px;
+}
+
+/* Winner message styling */
+#winner-message {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: red;
+  margin-top: 15px;
+}
+
+#player2-race td.active {
+  background-image: url("images/dog2.gif");
+  filter: brightness(1.5) saturate(1.1);
+}
+h1 {
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* horizontal offset, vertical offset, blur radius, shadow color */
+}
+h1 {
+  font-family: 'Barrio', cursive;
+}
+h1 {
+  font-size: 3rem;  /* or 48px, or any size you want */
+}
+button {
+  background-color: #007bff;     /* Blue background */
+  color: white;                  /* White text */
+  border: none;                  /* Remove default border */
+  border-radius: 8px;            /* Rounded corners */
+  padding: 12px 24px;            /* Bigger padding */
+  font-size: 1.1rem;             /* Larger font size */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  background-color: #0056b3;     /* Darker blue on hover */
+  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
